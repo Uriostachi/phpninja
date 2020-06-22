@@ -1,0 +1,22 @@
+{
+    "name": "uriostachi/phpninja",
+    "description": "My own micro FrameWork",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "uriostachi",
+            "email": "machi.william@protonmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "autoload": {
+        "psr-4": {
+            "PHPNinja\\" : "src/"
+        }
+    },
+    "require": {
+        "nikic/fast-route": "^1.3",
+        "twig/twig": "^3.0"
+    }
+}
