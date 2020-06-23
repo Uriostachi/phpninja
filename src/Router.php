@@ -24,6 +24,7 @@ class Router
         }
          
         $routeInfo = $dispatcher->dispatch($_SERVER['REQUEST_METHOD'], rawurldecode($uri));
+        
         if($routeInfo[0] == FastRoute\Dispatcher::FOUND) {
             // Je vérifie si mon parametre est une chaine de caractere
             if(is_string($routeInfo[1])) {
@@ -44,6 +45,24 @@ class Router
             }
             // on execute avec call_user_func_array
             echo call_user_func_array($method, $routeInfo[2]); 
+        }
+        elseif($routeInfo[0] == FastRoute\Dispatcher::NOT_FOUND){
+            header("HTTP/1.0 404 Not Found");
+            if(method_exists('\App\Controller\ErrorController','print_404')) {
+                echo call_user_func([new \App\Controller\ErrorController, 'print_404']);
+            } else {
+                echo '<h1>404 Not Found</h1>';
+                exit();
+            }
+        }
+        elseif($routeInfo[0] == FastRoute\Dispatcher::METHOD_NOT_ALLOWED){
+            header("HTTP/1.0 405 Method Not Allowed");  
+            if(method_exists('\App\Controller\ErrorController','print_405')) {
+                echo call_user_func([new \App\Controller\ErrorController, 'print_405']);
+            } else {
+                echo '<h1>405 Method Not Allowed</h1>';
+                exit();
+            }
         }
         
     }
