@@ -2,6 +2,8 @@
 
 namespace PHPNinja;
 
+use PDO;
+
 class DBConnect
 {
 	private static $instance;

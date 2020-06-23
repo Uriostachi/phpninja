@@ -4,7 +4,7 @@ namespace PHPNinja;
 
 class AbstractRepository
 {
-	private $conn;
+	protected $conn;
 
 	public function __construct($conn)
 	{
