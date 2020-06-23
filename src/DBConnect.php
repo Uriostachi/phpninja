@@ -8,7 +8,7 @@ class DBConnect
 
 	private final function __construct()
 	{
-		echo __CLASS__ . ' initialize only once';
+		//echo __CLASS__ . ' initialize only once';
 	}
 
 	public static function getInstance() 
@@ -22,7 +22,7 @@ class DBConnect
 
 	public function getDbConn()
 	{
-		$config = include((dirname(__DIR__, 4) .  'app/config.php'));
+		$config = include((dirname(__DIR__, 4) .  '/app/config.php'));
 
 		$mysql = $config['mysql'];
 		$dsn = $mysql['dsn'];
