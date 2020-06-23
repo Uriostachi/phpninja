@@ -1,5 +1,7 @@
 <?php
 
+namespace PHPNinja;
+
 class DBConnect
 {
 	private static $instance;
