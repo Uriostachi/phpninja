@@ -19,8 +19,12 @@ abstract class AbstractController
 
 	protected function render($view, $vars = [])
 	{
-		//echo "$view.html.twig";
-		return $this->templateEngine->render($view.'.html.twig', $vars);
+		$data = array_merge(
+			$vars,
+			$this->session()->get()
+		);
+
+		return $this->templateEngine->render($view.'.html.twig', $data);
 	}
 
 	protected function session()
@@ -44,5 +48,19 @@ abstract class AbstractController
     {
         header("location:".$url);
         exit();
-    }
+		}
+		
+	protected function connect()
+	{
+		if($this->session()->__get("loggedin") != null && $this->session()->__get("loggedin") === true)
+		{
+			$this->flashbag()->set("connection", "You are already connected");
+		}
+		else 
+		{
+			$this->session()->__set("loggedin", true);
+			$this->flashbag()->set("connection", "Connection Successfull");
+		}
+
+	}
 }

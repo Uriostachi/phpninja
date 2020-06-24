@@ -18,6 +18,19 @@ class Session
     	if ($bStatut === FALSE) session_start();
     }
 
+    public function get(?string $name = null)
+    {
+        if($name === '_flashbag') { 
+            return (new FlashBag)->get();
+        }
+        elseif($name === null) {
+            $session = array_merge($_SESSION, (new FlashBag)->get());
+            return $session;
+        }
+       
+        return $_SESSION[$name] ?? null;
+    }
+
 
     public function __get(string $name)
     {
@@ -28,4 +41,3 @@ class Session
     {            
         $_SESSION[$name] = $value;
     }
-}
