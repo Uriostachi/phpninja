@@ -73,7 +73,7 @@ abstract class AbstractController
 			} 
 			else
 			{
-                move_uploaded_file($_FILES["photo"]["tmp_name"], "upload/" . $filename);
+                move_uploaded_file($_FILES["photo"]["tmp_name"], dirname(__DIR__, 4) . $path . $filename);
                 echo "Your file was uploaded successfully.";
             } 
 		} 
