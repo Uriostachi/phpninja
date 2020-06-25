@@ -2,9 +2,9 @@
 
 namespace PHPNinja;
 
-class Session
+class Session 
 {
-	public function __construct()
+    public function __construct()
     {
 		$bStatut = false;
 	    if ( php_sapi_name() !== 'cli' ) {
@@ -16,6 +16,18 @@ class Session
 	    }
     
     	if ($bStatut === FALSE) session_start();
+    }
+
+
+
+    public function destroy(?string $name = null)
+    {
+        if($name === null) {
+            unset($_SESSION);
+        }
+        elseif(isset($_SESSION[$name])) {
+            unset($_SESSION[$name]);
+        }
     }
 
     public function get(?string $name = null)
@@ -31,9 +43,11 @@ class Session
         return $_SESSION[$name] ?? null;
     }
 
-
     public function __get(string $name)
     {
+        if($name === '_flashbag') { 
+           return (new FlashBag)->get();
+        }
         return $_SESSION[$name] ?? null;
     }
 
@@ -41,3 +55,4 @@ class Session
     {            
         $_SESSION[$name] = $value;
     }
+}

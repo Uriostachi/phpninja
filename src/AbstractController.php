@@ -48,19 +48,6 @@ abstract class AbstractController
     {
         header("location:".$url);
         exit();
-		}
-		
-	protected function connect()
-	{
-		if($this->session()->__get("loggedin") != null && $this->session()->__get("loggedin") === true)
-		{
-			$this->flashbag()->set("connection", "You are already connected");
-		}
-		else 
-		{
-			$this->session()->__set("loggedin", true);
-			$this->flashbag()->set("connection", "Connection Successfull");
-		}
-
 	}
+		
 }
