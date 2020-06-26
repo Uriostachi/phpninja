@@ -69,11 +69,11 @@ abstract class AbstractController
             // Check whether file exists before uploading it
 			if(file_exists(dirname(__DIR__, 4) . $path . $filename))
 			{
-                echo $filename . " is already exists.";
+                echo $filename . " already exists.";
 			} 
 			else
 			{
-                move_uploaded_file($_FILES["photo"]["tmp_name"], dirname(__DIR__, 4) . $path . $filename);
+                move_uploaded_file($_FILES[$name]["tmp_name"], dirname(__DIR__, 4) . $path . $filename);
                 echo "Your file was uploaded successfully.";
             } 
 		} 
