@@ -8,9 +8,9 @@ class Kernel
 {
 	private $router;
 
-	public function __construct($router)
+	public function __construct()
 	{
-		$this->router = $router;
+		$this->router = new Router;
 	}
 
 	public function getRouter() 
